@@ -63,7 +63,6 @@ async function getquote() {
       
     li.appendChild(editbtn)
     li.appendChild(deletebtn)
-    li.className = "mt-3 text-xl text-gray-700";
     quotelist.appendChild(li);
   });
 }
