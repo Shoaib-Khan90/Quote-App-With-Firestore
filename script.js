@@ -92,6 +92,11 @@ async function editQuote(id, oldQuote) {
 }
 
 async function deleteQuote(id) {
-  await deleteDoc(doc(db, "quotes", id));
+  await deleteDoc(doc(db, "quotes", id)
+);
   getquote();
 }
+
+setTimeout(()=>{
+  getquote()
+},1000)
