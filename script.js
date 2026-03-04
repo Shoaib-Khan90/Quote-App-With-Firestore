@@ -60,7 +60,7 @@ async function getquote() {
         deletebtn.className =
       "border-none w-30 rounded-2xl text-xl p-2 ml-5 bg-pink-200 text-yellow-600";
       li.className = 
-       " mt-10  items-center border-none w-full h-15 rounded-2xl text-2xl p-2 bg-gray-200 text-green-600  mb-4 hover:scale-105 transition duration-300";
+       " mt-10 uppercase items-center border-none w-full h-15 rounded-2xl text-2xl p-2 bg-gray-200 text-green-600  mb-4 hover:scale-105 transition duration-300";
 
     editbtn.addEventListener("click", () => {
       editQuote(docSnap.id, docSnap.data().quote);
