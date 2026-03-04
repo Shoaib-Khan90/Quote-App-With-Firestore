@@ -5,7 +5,9 @@ import {
   collection,
   addDoc,
   getDocs,
-  serverTimestamp
+  serverTimestamp,
+  updateDoc,
+  deleteDoc
 } from "./Firebase.js";
 
 const app = initializeApp(firebaseConfig);
@@ -44,3 +46,4 @@ async function getquote() {
 }
 
 getquote();
+
