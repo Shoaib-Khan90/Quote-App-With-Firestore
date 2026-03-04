@@ -30,6 +30,18 @@ async function addquote() {
   quoteinput.value = "";
   quotelist.innerHTML = "";
   getquote();
+  try {
+    await addDoc(quoteCollection, {
+      quote: quoteinput.value,
+      time: serverTimestamp(),
+    });
+
+    quoteinput.value = "";
+    quotelist.innerHTML = "";   // clear list
+    getquote();                 // reload list
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 async function getquote() {
@@ -51,6 +63,7 @@ async function getquote() {
       
     li.appendChild(editbtn)
     li.appendChild(deletebtn)
+    li.className = "mt-3 text-xl text-gray-700";
     quotelist.appendChild(li);
   });
 }
