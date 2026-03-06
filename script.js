@@ -23,9 +23,10 @@ const quoteCollection = collection(db, "quotes");
 quotebtn.addEventListener("click", addquote);
 
 async function addquote() {
-  if (quoteinput.value.trim() === "") return;
-
-  
+  if (quoteinput.value.trim() === "") {
+    alert("Plz add the item")
+    return;
+  }
   try {
     await addDoc(quoteCollection, {
       quote: quoteinput.value,
@@ -55,12 +56,14 @@ async function getquote() {
     editbtn.textContent = "Edit";
     deletebtn.textContent = "Delete";
 
-     editbtn.className =
-      "border-none w-30 rounded-2xl text-xl ml-40  p-2 ml-5 bg-pink-200 text-yellow-600";
-        deletebtn.className =
-      "border-none w-30 rounded-2xl text-xl p-2 ml-5 bg-pink-200 text-yellow-600";
-      li.className = 
-       " mt-10 uppercase items-center border-none w-full h-15 rounded-2xl text-2xl p-2 bg-gray-200 text-green-600  mb-4 hover:scale-105 transition duration-300";
+  editbtn.className =
+"px-4 py-2 text-sm font-semibold rounded-xl bg-gradient-to-r from-blue-400 to-purple-500 text-white shadow-md hover:scale-110 hover:shadow-lg transition-all duration-300";
+
+deletebtn.className =
+"px-4 py-2 text-sm font-semibold rounded-xl bg-gradient-to-r from-red-400 to-pink-500 text-white shadow-md hover:scale-110 hover:shadow-lg transition-all duration-300";
+
+li.className =
+"flex justify-between items-center mt-5 px-4 py-3 w-full rounded-xl text-lg uppercase bg-gray-100 text-green-700 shadow-md hover:scale-105 hover:bg-gradient-to-r hover:from-green-200 hover:to-green-300 transition-all duration-300";
 
     editbtn.addEventListener("click", () => {
       editQuote(docSnap.id, docSnap.data().quote);
@@ -82,7 +85,15 @@ getquote();
 async function editQuote(id, oldQuote) {
   const newQuote = prompt("Enter new quote", oldQuote);
 
-  if (!newQuote) return;
+  if (!newQuote) 
+    return;
+
+   const confirmEdit = prompt("Are you sure you want to edit this? (yes / no)");
+
+  if (confirmEdit.toLowerCase() !== "yes") {
+    alert("Edit cancelled!");
+    return;
+  }
 
   await updateDoc(doc(db, "quotes", id), {
     quote: newQuote,
@@ -92,6 +103,7 @@ async function editQuote(id, oldQuote) {
 }
 
 async function deleteQuote(id) {
+  alert("Are you sure you want to delete this item")
   await deleteDoc(doc(db, "quotes", id)
 );
   getquote();
@@ -100,3 +112,4 @@ async function deleteQuote(id) {
 setTimeout(()=>{
   getquote()
 },1000)
+
